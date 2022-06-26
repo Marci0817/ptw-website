@@ -8,7 +8,7 @@ const NotFound = () => (
         <motion.div 
             initial={{scale:0.2}}
             animate={{scale:1}}
-            transition={{duration:0.8}}
+            transition={{duration:0.5}}
         >
             <h1 className="yellow text-9xl font-normal">404</h1>
             <h1 className="text-white text-semibold text-xl">O-o nincs találat!</h1>

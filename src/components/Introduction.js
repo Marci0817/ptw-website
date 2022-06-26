@@ -7,10 +7,10 @@ export default function Introduction() {
     return (
         <>
         <div id="introBg" className="w-full h-full absolute top-0">
-            <motion.div className="mt-64 mx-auto lg:mx-64 w-4/5 md:w-2/5 lg:w-1/3" id="landingImage"
+            <motion.div className="mt-64 mx-auto md:mx-32 lg:mx-48 xl:64 w-4/5 md:w-3/5 lg:w-1/3" id="landingImage"
                 initial={{ opacity: 0,y:-50}}
                 animate={{ opacity: 1,y:0}}
-                transition={{ duration: 1.2 }}
+                transition={{ duration: 0.65 }}
             >
                 <div className="text-center md:text-left">
                     <p className="text-white uppercase text-2xl lg:text-4xl font-bold">PushToWeb kft.</p>
