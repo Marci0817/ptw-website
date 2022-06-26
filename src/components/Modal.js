@@ -1,6 +1,7 @@
 import React from "react"
 import {AnimatePresence, motion} from "framer-motion"
 
+
 const modalSettings = {
     visible: {opacity:1, y:0,transition:{ duration:0.6}},
     hidden: {opacity:0, y:-250,transition:{ duration:0.6}}
@@ -19,13 +20,14 @@ const Modal = ({ showModal, setShowModal }) =>{
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full modal-popup">
+            className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-full modal-popup"
+            >
             <motion.div 
                 variants={modalSettings}
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="relative p-4 w-full mx-auto mt-60 max-w-md h-full md:h-auto bg-white rounded-md shadow-orange-300 shadow-md">
+                className="relative p-4 w-full mx-auto mt-60 max-w-md h-auto bg-white rounded-md shadow-orange-300 shadow-md">
                     <p className="absolute right-0 top-0 p-4 cursor-pointer text-gray-700" onClick={() => setShowModal(false)}>X</p>
                     <h2 className="uppercase text-lg">Kapcsolatfelvétel</h2>
                     <form >

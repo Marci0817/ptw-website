@@ -1,11 +1,26 @@
+html{
+    margin: 0;
+}
 body{
     font-family: 'Karla', sans-serif;
     margin: 0;
+    background-color: black;
     
+
+}
+#introBg{
     background-image: url("./img/background.jpg");
     background-repeat: no-repeat;
     background-position: top center;
     background-size: auto;
+
+}
+#aboutUs{
+    background-image: url("./img/about.png");
+    background-repeat: repeat-y;
+    background-position: center;
+    background-size: auto;
+
 }
 li{
     float: left;
