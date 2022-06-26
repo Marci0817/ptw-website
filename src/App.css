@@ -3,7 +3,6 @@ body{
     margin: 0;
     
     background-image: url("./img/background.jpg");
-    background-color: rgba(230,163,51,0.3);
     background-repeat: no-repeat;
     background-position: top center;
     background-size: auto;
@@ -25,9 +24,6 @@ li{
 .yellow-bg{
     background-color: rgb(241, 172, 53);
 }
-li:hover{
-    color: rgb(230,163,51);
-}
 
 /* width */
 ::-webkit-scrollbar {
@@ -48,4 +44,7 @@ li:hover{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #b47507; 
+}
+.modal-popup{
+    background-color: rgba(0, 0, 0, 0.7);
 }

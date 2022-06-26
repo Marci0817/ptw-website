@@ -9,7 +9,7 @@ function Leaders(){
         </div>
     );
     return(
-        <div className="mt-8 flex flex-row w-1/2 mx-auto">
+        <div className="mt-8 md:flex md:flex-row md:w-1/2 mx-4 md:mx-auto">
             {item}
         </div>
     );
