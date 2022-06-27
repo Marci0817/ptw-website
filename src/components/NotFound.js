@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion }  from "framer-motion";
 
 const NotFound = () => (
-  <div>
+  <div className="notFoundBg w-full h-screen absolute top-0">
     <div className="text-center mt-52">
         <motion.div 
             initial={{scale:0.2}}

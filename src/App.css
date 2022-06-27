@@ -15,10 +15,16 @@ body{
 }
 #aboutUs{
     background-image: url("./img/about.png");
-    background-repeat: repeat-y;
+    background-repeat: repeat;
     background-position: center;
     background-size: auto;
 
+}
+.notFoundBg{
+    background-image: url("./img/404.jpg");
+    background-repeat: repeat;
+    background-position: right center;
+    background-size: auto;
 }
 .servicesBg{
     background-image: url("./img/services.png");
