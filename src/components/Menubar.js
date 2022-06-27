@@ -34,7 +34,7 @@ export default function Menubar() {
   return (
     <>
       {!showMobilMenu && (
-        <motion.div className="absolute mx-8 lg:mx-16 text-lg uppercase text-white font-medium z-40 mt-8"
+        <motion.div className="relative mx-8 lg:mx-16 text-lg uppercase text-white font-medium z-40 mt-8"
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{duration:1.2}}
@@ -42,7 +42,7 @@ export default function Menubar() {
           <div className="float-left ml-8 lg:ml-16">
               <img className="w-14" src={logo} alt="logo"></img>
           </div>
-          <div className="float-right hidden lg:block fixed right-0 mr-8">
+          <div className="float-right relative hidden lg:block mr-8">
               <ul className="inline-block">
                   {menuItems.map((menuItem, index) =>
                     <Link to={menuItemTo[index]}>
@@ -62,7 +62,7 @@ export default function Menubar() {
                   
               </ul>
           </div>
-          <div className="float-right lg:hidden fixed right-0 mr-8 cursor-pointer">
+          <div className="float-right lg:hidden right-0 mr-8 cursor-pointer">
               <p className="inline-block"><svg  className="cursor-pointer" onClick={() => setMobilMenu(true)} fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28"><title>Toggle Menu</title><path d="M24 21v2c0 0.547-0.453 1-1 1h-22c-0.547 0-1-0.453-1-1v-2c0-0.547 0.453-1 1-1h22c0.547 0 1 0.453 1 1zM24 13v2c0 0.547-0.453 1-1 1h-22c-0.547 0-1-0.453-1-1v-2c0-0.547 0.453-1 1-1h22c0.547 0 1 0.453 1 1zM24 5v2c0 0.547-0.453 1-1 1h-22c-0.547 0-1-0.453-1-1v-2c0-0.547 0.453-1 1-1h22c0.547 0 1 0.453 1 1z"></path></svg></p>
           </div>
       </motion.div>
