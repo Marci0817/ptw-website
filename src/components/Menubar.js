@@ -40,7 +40,12 @@ export default function Menubar() {
         transition={{duration:1.2}}
       >
           <div className="float-left ml-8 lg:ml-16">
-              <img className="w-14" src={logo} alt="logo"></img>
+              <motion.img className="w-14" src={logo} alt="logo"
+                initial={{scale:1}}
+                animate={{scale: [1, 1.3, 1]}}
+                transition={{duration:1, delay:1}}
+
+              ></motion.img>
           </div>
           <div className="float-right relative hidden lg:block mr-8">
               <ul className="inline-block">

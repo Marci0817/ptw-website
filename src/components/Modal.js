@@ -1,5 +1,5 @@
 import React from "react"
-import {AnimatePresence, motion} from "framer-motion"
+import {AnimatePresence, motion, useAnimation} from "framer-motion"
 
 
 const modalSettings = {
@@ -12,6 +12,8 @@ const backSettings = {
 }
 
 const Modal = ({ showModal, setShowModal }) =>{
+    const control = useAnimation();
+    const controlInp = useAnimation();
     return (
       <AnimatePresence exitBeforeEnter>
         { showModal && (
@@ -21,6 +23,9 @@ const Modal = ({ showModal, setShowModal }) =>{
             animate="visible"
             exit="hidden"
             className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-full modal-popup"
+            >
+            <motion.div
+              animate={control}
             >
             <motion.div 
                 variants={modalSettings}
@@ -32,16 +37,17 @@ const Modal = ({ showModal, setShowModal }) =>{
                     <h2 className="uppercase text-lg">Kapcsolatfelvétel</h2>
                     <form>
                         <p className="text-lg mt-2">Teljes név</p>
-                        <input type="text" className="border-2 border-gray-600 rounded-md p-2 w-full mb-4" name="name"  />
+                        <motion.input type="text" className="border-2 border-gray-600 rounded-md p-2 w-full mb-4 cursor-not-allowed" disabled name="name" animate={controlInp} />
                         <br />
                         <p className="text-lg mt-2">Email</p>
-                        <input type="text" className="border-2 border-gray-600 rounded-md p-2 w-full mb-4" name="email"  />
+                        <motion.input type="text" className="border-2 border-gray-600 rounded-md p-2 w-full mb-4 cursor-not-allowed" disabled name="email"  animate={controlInp}/>
                         <br />
                         <p className="text-lg mt-2">Üzenet</p>
-                        <textarea type="text" className="border-2 border-gray-600 rounded-md p-2 w-full mb-4" name="message"  />
+                        <motion.textarea type="text" className="border-2 border-gray-600 rounded-md p-2 w-full mb-4 cursor-not-allowed" disabled name="message"  animate={controlInp}/>
                         <br />
-                        <input disabled className="border-2 cursor-not-allowed border-orange-400 cursor-pointer font-semibold bg-orange-400 p-2 rounded-lg text-black" type="submit" value="Küldés" />
+                        <p className="border-2 border-orange-400 cursor-pointer font-semibold bg-orange-400 p-2 rounded-lg text-black" onClick={() => {control.start({x:[0,-7,0,7,0], transition:{duration:0.15}});controlInp.start({borderColor:"red"})}}  >Küldés</p>
                     </form>
+                </motion.div>
                 </motion.div>
           </motion.div>
         )}
