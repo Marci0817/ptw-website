@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
-import { motion } from "framer-motion";
+import React, { useContext, useState, useEffect } from 'react';
+import { motion, useAnimation } from "framer-motion";
 import { ModalContext } from '../App.js';
 
 export default function Introduction() {
     const { setShowModal } = useContext(ModalContext);
+    const [counts, setCounts] = useState({ projects: 0, clients: 0, years: 0 });
 
     function toChar(x) {
         let t = [];
@@ -20,12 +21,6 @@ export default function Introduction() {
         "toAnimate": {
             opacity: 1,
         }
-    };
-
-    const fadeInUp = {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6 }
     };
 
     const services = [
@@ -47,10 +42,54 @@ export default function Introduction() {
     ];
 
     const stats = [
-        { number: "100+", label: "Sikeres Projekt" },
-        { number: "50+", label: "Elégedett Ügyfél" },
-        { number: "5+", label: "Év Tapasztalat" }
+        { number: 100, label: "Sikeres Projekt", stateKey: "projects" },
+        { number: 50, label: "Elégedett Ügyfél", stateKey: "clients" },
+        { number: 5, label: "Év Tapasztalat", stateKey: "years" }
     ];
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        stats.forEach(({ number, stateKey }) => {
+                            let startTime;
+                            const duration = 2000; // 2 seconds
+                            
+                            function animate(currentTime) {
+                                if (!startTime) startTime = currentTime;
+                                const progress = (currentTime - startTime) / duration;
+                                
+                                if (progress < 1) {
+                                    setCounts(prev => ({
+                                        ...prev,
+                                        [stateKey]: Math.floor(progress * number)
+                                    }));
+                                    requestAnimationFrame(animate);
+                                } else {
+                                    setCounts(prev => ({
+                                        ...prev,
+                                        [stateKey]: number
+                                    }));
+                                }
+                            }
+                            
+                            requestAnimationFrame(animate);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        const statsSection = document.getElementById('stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <>
@@ -120,6 +159,7 @@ export default function Introduction() {
 
                 {/* Stats Section */}
                 <motion.div 
+                    id="stats-section"
                     className="mt-32 px-4 md:px-8 lg:px-16"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -136,7 +176,9 @@ export default function Introduction() {
                                 transition={{ delay: index * 0.2 }}
                                 viewport={{ once: true }}
                             >
-                                <h3 className="yellow text-4xl font-bold mb-2">{stat.number}</h3>
+                                <h3 className="yellow text-4xl font-bold mb-2">
+                                    {counts[stat.stateKey]}+
+                                </h3>
                                 <p className="text-white text-lg">{stat.label}</p>
                             </motion.div>
                         ))}
